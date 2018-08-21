@@ -1514,27 +1514,29 @@ export class WindowScrollerExample extends PureComponent<{}, any> {
                         isScrollingCustomElement ? customElement : null
                     }
                 >
-                    {({ height, isScrolling, scrollTop, onChildScroll }) => (
+                    {({ height, isScrolling, scrollTop, onChildScroll, registerChild }) => (
                         <AutoSizer disableHeight>
                             {({ width }) => (
-                                <List
-                                    onScroll={onChildScroll}
-                                    autoHeight
-                                    className={"styles.List"}
-                                    height={height}
-                                    isScrolling={isScrolling}
-                                    overscanRowCount={2}
-                                    rowCount={list.size}
-                                    rowHeight={30}
-                                    rowRenderer={params =>
-                                        this._rowRenderer({
-                                            ...params,
-                                            isScrolling
-                                        })
-                                    }
-                                    scrollTop={scrollTop}
-                                    width={width}
-                                />
+                                <div ref={ registerChild }>
+                                    <List
+                                        onScroll={onChildScroll}
+                                        autoHeight
+                                        className={"styles.List"}
+                                        height={height}
+                                        isScrolling={isScrolling}
+                                        overscanRowCount={2}
+                                        rowCount={list.size}
+                                        rowHeight={30}
+                                        rowRenderer={params =>
+                                            this._rowRenderer({
+                                                ...params,
+                                                isScrolling
+                                            })
+                                        }
+                                        scrollTop={scrollTop}
+                                        width={width}
+                                    />
+                                </div>
                             )}
                         </AutoSizer>
                     )}

@@ -11,7 +11,9 @@ export type WindowScrollerChildProps = {
     width: number;
     isScrolling: boolean;
     scrollTop: number;
+    scrollLeft: number;
     onChildScroll: (params: { scrollTop: number }) => void;
+    registerChild: (params?: Element | null) => void;
 };
 
 export type WindowScrollerProps = {
